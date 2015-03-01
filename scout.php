@@ -14,9 +14,17 @@
 
 <head>
 	<title>Team 691 Scouting</title>
+	<link href="http://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
+	<style>
+		body {
+			background-color:#222222;
+			color:#DDDDDD;
+			font-family:"Roboto",sans-serif;
+		}
+	</style>
 </head>
 
-<body bgcolor="#222222" style="color:#DDDDDD;">
+<body>
 
 <?php
 
@@ -24,24 +32,21 @@ $locale = array(
 	array("Team Number", "teamNum"),
 	array("Round Number", "roundNum"),
 	array("Alliance Color", "allianceColor"),
-	array("Blue Score", "blueScore"),
-	array("Red Score", "redScore"),
+	array("Alliance Score", "allianceScore"),
 	array("Autonomous", "autonomous"),
 	array("Teleop", "teleop"),
 	array("Drive", "drive"),
 	array("Omnidirectional Drive", "driveOmni"),
 	array("Drive Speed", "driveSpeed"),
 	array("Drive Power", "drivePower"),
-	array("Offense", "offense"),
-	array("Defense", "defense"),
-	array("Truss", "truss"),
-	array("Pass", "pass"),
-	array("Catch", "catch"),
-	array("Shoot", "shoot"),
-	array("Shoot Success (%)", "shootSuccess"),
+	array("Totes", "totes"),
+	array("Containers", "containers"),
+	array("Litter", "litter"),
+	array("Focus", "focus"),
+	array("Stack Height", "stackHeight"),
 	array("Ground Pickup", "groundPickup"),
+	array("Human Pickup", "humanPickup"),
 	array("Comments", "comments"),
-	array("Submitter Team Number", "submitter"),
 	array("Timestamp","timestamp")
 );
 
@@ -56,51 +61,41 @@ $addform = <<<EOT
 	<option value="red">Red</option>
 </select><br>
 {$locale[3][0]}: <input name="{$locale[3][1]}" type="number" min="0" step="1" required><br>
-{$locale[4][0]}: <input name="{$locale[4][1]}" type="number" min="0" step="1" required><br>
+{$locale[4][0]}: <input name="{$locale[4][1]}" type="radio" value="true" required>Yes<input name="{$locale[4][1]}" type="radio" value="false" required>No<br>
 {$locale[5][0]}: <input name="{$locale[5][1]}" type="radio" value="true" required>Yes<input name="{$locale[5][1]}" type="radio" value="false" required>No<br>
 {$locale[6][0]}: <input name="{$locale[6][1]}" type="radio" value="true" required>Yes<input name="{$locale[6][1]}" type="radio" value="false" required>No<br>
 {$locale[7][0]}: <input name="{$locale[7][1]}" type="radio" value="true" required>Yes<input name="{$locale[7][1]}" type="radio" value="false" required>No<br>
-{$locale[8][0]}: <input name="{$locale[8][1]}" type="radio" value="true" required>Yes<input name="{$locale[8][1]}" type="radio" value="false" required>No<br>
-{$locale[9][0]}:
-<select name="{$locale[9][1]}" required>
+{$locale[8][0]}:
+<select name="{$locale[8][1]}" required>
 	<option selected disabled hidden></option>
 	<option value="none">None</option>
 	<option value="slow">Slow</option>
 	<option value="medium">Medium</option>
 	<option value="fast">Fast</option>
 </select><br>
-{$locale[10][0]}:
-<select name="{$locale[10][1]}" required>
+{$locale[9][0]}:
+<select name="{$locale[9][1]}" required>
 	<option selected disabled hidden></option>
 	<option value="none">None</option>
 	<option value="low">Low</option>
 	<option value="medium">Medium</option>
 	<option value="high">High</option>
 </select><br>
+{$locale[10][0]}: <input name="{$locale[10][1]}" type="radio" value="true" required>Yes<input name="{$locale[10][1]}" type="radio" value="false" required>No<br>
 {$locale[11][0]}: <input name="{$locale[11][1]}" type="radio" value="true" required>Yes<input name="{$locale[11][1]}" type="radio" value="false" required>No<br>
 {$locale[12][0]}: <input name="{$locale[12][1]}" type="radio" value="true" required>Yes<input name="{$locale[12][1]}" type="radio" value="false" required>No<br>
-{$locale[13][0]}: <input name="{$locale[13][1]}" type="radio" value="true" required>Yes<input name="{$locale[13][1]}" type="radio" value="false" required>No<br>
-{$locale[14][0]}:
-<select name="{$locale[14][1]}" required>
+{$locale[13][0]}:
+<select name="{$locale[13][1]}" required>
 	<option selected disabled hidden></option>
 	<option value="none">None</option>
-	<option value="toss">Toss</option>
-	<option value="push">Push</option>
-	<option value="both">Both</option>
+	<option value="low">Totes</option>
+	<option value="medium">Containers</option>
+	<option value="high">Litter</option>
 </select><br>
+{$locale[14][0]}: <input name="{$locale[14][1]}" type="number" min="0" step="1" required><br>
 {$locale[15][0]}: <input name="{$locale[15][1]}" type="radio" value="true" required>Yes<input name="{$locale[15][1]}" type="radio" value="false" required>No<br>
-{$locale[16][0]}:
-<select name="{$locale[16][1]}" required>
-	<option selected disabled hidden></option>
-	<option value="none">None</option>
-	<option value="low">Low</option>
-	<option value="high">High</option>
-	<option value="both">Both</option>
-</select><br>
-{$locale[17][0]}: <input name="{$locale[17][1]}" type="number" min="0" step="1" required><br>
-{$locale[18][0]}: <input name="{$locale[18][1]}" type="radio" value="true" required>Yes<input name="{$locale[18][1]}" type="radio" value="false" required>No<br>
-{$locale[19][0]}: <input name="{$locale[19][1]}" type="text"><br>
-{$locale[20][0]}: <input name="{$locale[20][1]}" type="number" min="0" step="1" required><br>
+{$locale[16][0]}: <input name="{$locale[16][1]}" type="radio" value="true" required>Yes<input name="{$locale[16][1]}" type="radio" value="false" required>No<br>
+{$locale[17][0]}: <input name="{$locale[17][1]}" type="text"><br>
 <input type="submit">
 </form>
 EOT;
