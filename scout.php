@@ -14,12 +14,17 @@
 
 <head>
 	<title>Team 691 Scouting</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link href="http://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
 	<style>
 		body {
 			background-color:#222222;
 			color:#DDDDDD;
 			font-family:"Roboto",sans-serif;
+		}
+
+		a {
+			color:#2288DD;
 		}
 	</style>
 </head>
@@ -95,7 +100,7 @@ $addform = <<<EOT
 {$locale[14][0]}: <input name="{$locale[14][1]}" type="number" min="0" step="1" required><br>
 {$locale[15][0]}: <input name="{$locale[15][1]}" type="radio" value="true" required>Yes<input name="{$locale[15][1]}" type="radio" value="false" required>No<br>
 {$locale[16][0]}: <input name="{$locale[16][1]}" type="radio" value="true" required>Yes<input name="{$locale[16][1]}" type="radio" value="false" required>No<br>
-{$locale[17][0]}: <input name="{$locale[17][1]}" type="text"><br>
+{$locale[17][0]}: <textarea name="{$locale[17][1]}" rows="4" cols="40" style="vertical-align:top;"></textarea><br>
 <input type="submit">
 </form>
 EOT;
